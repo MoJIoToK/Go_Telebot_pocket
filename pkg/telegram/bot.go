@@ -24,4 +24,32 @@ func NewBot(bot *tgbotapi.BotAPI, client *pocket.Client, redirectURL string, sto
 	}
 }
 
-func (b *Bot) Start
+func (b *Bot) Start() error {
+	u := tgbotapi.NewUpdate(0)
+	u.Timeout = 60
+
+	updates, err := b.bot.GetUpdatesChan(u)
+	if err != nil {
+		return err
+	}
+
+	for update := range updates {
+		if update.Message == nil {
+			continue
+		}
+
+		if update.Message.IsCommand() {
+			if err := b.handleCommand(update.Message); err != nil {
+				b.handleError(update.Message.Chat.ID, err)
+			}
+
+			continue
+		}
+
+		if err := b.handleMessage(update.Message); err != nil {
+			b.handleError(update.Message.ChatID, err)
+		}
+	}
+
+	return nil
+}
