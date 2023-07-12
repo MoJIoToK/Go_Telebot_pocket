@@ -1,9 +1,9 @@
 package telegram
 
 import (
+	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/storage"
 	pocket "github.com/MoJIoToK/go_Pocket_SDK"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
-	"golang.org/x/mod/sumdb/storage"
 )
 
 type Bot struct {
