@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/config"
 	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/storage"
 	pocket "github.com/MoJIoToK/go_Pocket_SDK"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -24,6 +25,7 @@ func NewBot(bot *tgbotapi.BotAPI, client *pocket.Client, redirectURL string, sto
 	}
 }
 
+// Start() -
 func (b *Bot) Start() error {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
@@ -38,7 +40,7 @@ func (b *Bot) Start() error {
 			continue
 		}
 
-		if update.Message.IsCommand() {
+		if update.Message.IsCommand() { // проверка команда ли это или нет
 			if err := b.handleCommand(update.Message); err != nil {
 				b.handleError(update.Message.Chat.ID, err)
 			}
@@ -47,7 +49,7 @@ func (b *Bot) Start() error {
 		}
 
 		if err := b.handleMessage(update.Message); err != nil {
-			b.handleError(update.Message.ChatID, err)
+			b.handleError(update.Message.Chat.ID, err)
 		}
 	}
 

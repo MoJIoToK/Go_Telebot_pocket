@@ -2,17 +2,19 @@ package telegram
 
 import (
 	"context"
+	"net/url"
+
 	pocket "github.com/MoJIoToK/go_Pocket_SDK"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
-	"net/url"
 )
 
 const (
 	COMMAND_START = "start"
 )
 
+// выполнение команды
 func (b *Bot) handleCommand(message *tgbotapi.Message) error {
-	switch message.Command() {
+	switch message.Command() { //Command - вернет саму команду
 	case COMMAND_START:
 		return b.handleStartCommand(message)
 	default:
@@ -26,7 +28,7 @@ func (b *Bot) handleStartCommand(message *tgbotapi.Message) error {
 		return b.initAuthorizationProcess(message)
 	}
 
-	msg := tgbotapi.NewMessage(message.Chat.ID, b.messages.Responses.AlreadyAutorized)
+	msg := tgbotapi.NewMessage(message.Chat.ID, b.messages.Responses.AlreadyAuthorized)
 	_, err = b.bot.Send(msg)
 	return err
 }

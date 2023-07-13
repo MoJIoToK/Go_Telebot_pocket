@@ -4,7 +4,11 @@ import (
 	"log"
 
 	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/config"
+	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/server"
+	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/storage"
 	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/storage/boltdb"
+	telegram "github.com/MoJIoToK/Go_Telebot_pocket/pkg/telegram"
+	pocket "github.com/MoJIoToK/go_Pocket_SDK"
 	"github.com/boltdb/bolt"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
@@ -21,10 +25,8 @@ func main() {
 	}
 	botApi.Debug = true
 
-	pocketClient, err := pocket.NewClient(cfg.PocketConsumerKey)
-	if err != nil {
-		log.Fatal(err)
-	}
+	//pocketClient, err := pocket.new_Client(cfg.PocketConsumerKey)
+	pocketClient, err := pocket.new_Client(cfg.PocketConsumerKey)
 
 	db, err := initBolt()
 	if err != nil {

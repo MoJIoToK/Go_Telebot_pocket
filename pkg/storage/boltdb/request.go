@@ -4,8 +4,8 @@ import (
 	"errors"
 	"strconv"
 
+	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/storage"
 	"github.com/boltdb/bolt"
-	"github.com/zhashkevych/telegram-pocket-bot/pkg/storage"
 )
 
 type TokenStorage struct {

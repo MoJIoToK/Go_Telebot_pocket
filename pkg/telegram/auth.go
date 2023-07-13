@@ -3,7 +3,7 @@ package telegram
 import (
 	"context"
 	"fmt"
-
+	"github.com/MoJIoToK/Go_Telebot_pocket/pkg/storage"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
@@ -38,5 +38,5 @@ func (b *Bot) generateRedirectURL(chatID int64) string {
 }
 
 func (b *Bot) getAccessToken(chatID int64) (string, error) {
-	return b.storage.Get(chatID, storage.getAccessTokens)
+	return b.storage.Get(chatID, storage.AccessTokens)
 }
