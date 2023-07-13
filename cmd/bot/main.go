@@ -25,8 +25,8 @@ func main() {
 	}
 	botApi.Debug = true
 
+	pocketClient, err := pocket.NewClient(cfg.PocketConsumerKey)
 	//pocketClient, err := pocket.new_Client(cfg.PocketConsumerKey)
-	pocketClient, err := pocket.new_Client(cfg.PocketConsumerKey)
 
 	db, err := initBolt()
 	if err != nil {

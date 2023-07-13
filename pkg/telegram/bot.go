@@ -30,10 +30,10 @@ func (b *Bot) Start() error {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
 
-	updates, err := b.bot.GetUpdatesChan(u)
-	if err != nil {
-		return err
-	}
+	updates := b.bot.GetUpdatesChan(u)
+	// if err != nil {
+	// 	return err
+	// }
 
 	for update := range updates {
 		if update.Message == nil {
